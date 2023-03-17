@@ -1,7 +1,8 @@
+require 'byebug'
 class Receipt
   attr_accessor :products, :sales_tax_total, :total_cost
 
-  def process(input)
+  def initialize(input)
     @products = []
     input.each_line do |line|
       parts = line.strip.split(' ')
@@ -13,7 +14,14 @@ class Receipt
     end
     @sales_tax_total = @products.map(&:sales_tax).reduce(:+)
     @total_cost = @products.map(&:total_price).reduce(:+)
-    show
+  end
+
+  def tax_total
+    @sales_tax_total.round(2)
+  end
+
+  def total_cost
+    @total_cost.round(2)
   end
 
   def show
