@@ -5,8 +5,11 @@ class Product
     @quantity = quantity
     @name = name
     @price = price.to_f * @quantity.to_i
-    @sales_tax = is_exempt ? 0 : (@price * 0.1).round(2)
-    @import_tax = is_imported ? (@price * 0.05).round(2) : 0
-    @total_price = @price + @sales_tax + @import_tax
+    sales_tax = is_exempt ? 0 : (@price * 10/100.0).round(2)
+    sales_tax = (sales_tax * 20).ceil/20.0
+    import_tax = is_imported ? (@price * 5/100.0).round(2) : 0
+    @import_tax = (import_tax * 20).ceil/20.0
+    @sales_tax = sales_tax + @import_tax
+    @total_price = @price + sales_tax + @import_tax
   end
 end
