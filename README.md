@@ -5,6 +5,23 @@ This project was developed on ruby language
 * lib: Includes the classes: Product, Receipt
 * spec: Includes the tests
 
+# Run the project
+To run the project:
+Execute `bundle install` to load dependencies (rspec)
+Shell execute irb.
+
+load the classes
+require_relative('product')
+require_relative('receipt')
+
+Load the input for products
+input='2 book at 12.49
+1 music CD at 14.99
+1 chocolate bar at 0.85'
+
+To show the receipt:
+Receipt.new(input).show
+
 # Testing
 The project contains test files: Product test and receipt test.
 
